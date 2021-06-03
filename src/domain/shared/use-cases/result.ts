@@ -2,7 +2,13 @@ import { AppError } from "../error/app-error";
 
 export default class Result<S, E = AppError> {
 
-  constructor(public value?: S, public error?: E) { }
+  private value: S;
+  private error: E;
+
+  constructor(value?: S, error?: E) {
+    this.value = value;
+    this.error = error;
+  }
 
   public getValue(): S {
     if (this.error) {
@@ -15,12 +21,16 @@ export default class Result<S, E = AppError> {
     return this.error as E;
   }
 
-  public static ok<T>(result: T): Result<T> {
-    return new Result<T>(result);
+  public hasError(): boolean {
+    return this.error !== null && this.error !== undefined;
   }
 
-  public static fail<T extends AppError>(error: T): Result<T> {
-    return new Result<T>(undefined, error);
+  public static ok<T>(result: T): Result<T, null> {
+    return new Result<T, null>(result);
+  }
+
+  public static fail<T extends AppError>(error: T): Result<null, T> {
+    return new Result<null, T>(undefined, error);
   }
 
 }
