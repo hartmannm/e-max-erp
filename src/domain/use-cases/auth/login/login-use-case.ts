@@ -1,4 +1,5 @@
 import IUserRepository from '../../../infra/database/i-user-repository';
+import { ErrorHandler } from '../../../shared/error/error-handler';
 import IUseCase from '../../../shared/use-cases/i-use-case';
 import Result from '../../../shared/use-cases/result';
 import EmailValidator from '../../../shared/validators/email-validator';
@@ -15,7 +16,8 @@ export default class LoginUseCase implements IUseCase<LoginInput, LoginOutput> {
       const user = await this.userRepository.findByEmail(input.email);
       return new LoginOutput(Result.ok(user));
     } catch (error) {
-      return new LoginOutput(Result.fail(error));
+      const err = ErrorHandler.normalizeError(error);
+      return new LoginOutput(Result.fail(err));
     }
   }
 

@@ -3,12 +3,14 @@ import configurations from '../infra/config/configurations';
 import cors from 'cors';
 import * as helmet from 'helmet';
 import MongooseDatabase from '../infra/database/impl/mongoose-database';
+import { AuthRouter } from './routes/auth-router';
 
 export default class ExpressApp {
 
   public async runApp(): Promise<void> {
     const app = express();
     this._configureMiddlewares(app);
+    this.configureRouter(app);
     await this._connectToDatabase();
     const port = configurations.port;
     console.log(`Server running on port ${port}`);
@@ -28,6 +30,10 @@ export default class ExpressApp {
     const db = new MongooseDatabase();
     db.createConnection();
     console.log('Connected on database...');
+  }
+
+  private configureRouter(app: express.Application): void {
+    app.use('/login', new AuthRouter().getRouter());
   }
 
 }
