@@ -1,7 +1,7 @@
 import { AppError } from "./app-error";
 import { ErrorType } from "./error-type";
 
-export class ErrorHandler {
+export default class ErrorHandler {
 
   public static normalizeError(err: Error): AppError {
     if (err instanceof AppError) {

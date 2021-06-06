@@ -1,9 +1,12 @@
+import { UserLevel } from "../shared/enums/user/user-level";
+
 export default interface IUser {
 
-  id: number;
+  _id: string;
   name: string;
   lastName: string;
   email: string;
   password: string;
+  userLevel: UserLevel
 
 }
