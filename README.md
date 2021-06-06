@@ -13,6 +13,7 @@ DB_USERNAME=usuário do banco de dados
 DB_PASSWORD=senha do banco de dados
 DB_NAME=e_max_erp
 DB_POOLSIZE=quantidade de conexões do pool (não obrigatório)
+SESSION_SECRET=9d8f4v6s5d4va98-s4dc89a4sd6c4ads984-4b84b6df54ad8s4
 ```
 
 2. Execute o comando `npm install` para instalar as dependências do projeto

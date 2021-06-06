@@ -12,14 +12,19 @@ export default class ExpressAdapter {
    * @param controllerFn Função do controller a ser executada
    * @param callback Callback
    */
-  public static adapt(controllerFn: (requestData: IRequestData) => Promise<Result<any, AppError>>, callback: (req: Request, res: Response, result: Result<any, AppError>) => any) {
+  public static adaptMiddleware(controllerFn: (requestData: IRequestData) => Promise<Result<any, AppError>>, callback: (req: Request, res: Response, result: Result<any, AppError>) => any) {
     return async function (req: Request, res: Response) {
-      const requestData: IRequestData = {
-        ...req
-      };
-      const result = await controllerFn(requestData);
+      const result = await controllerFn(ExpressAdapter._mapRequestToRequestData(req));
       callback(req, res, result);
     };
+  }
+
+  public static async adapt(controllerFn: (requestData: IRequestData) => Promise<Result<any, AppError>>, req: Request) {
+    return await controllerFn(ExpressAdapter._mapRequestToRequestData(req));
+  }
+
+  private static _mapRequestToRequestData(req: Request): IRequestData {
+    return { ...req };
   }
 
 }

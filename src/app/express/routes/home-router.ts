@@ -1,7 +1,7 @@
 import { Router } from "express";
-import LoginController from "../controllers/login-controller";
+import HomeController from "../controllers/home-controller";
 
-export class AuthRouter {
+export default class HomeRouter {
 
   private router: Router;
 
@@ -11,8 +11,7 @@ export class AuthRouter {
   }
 
   private _configureRoutes(): void {
-    this.router.get('/', LoginController.loginPage);
-    this.router.post('/', LoginController.doLogin);
+    this.router.get('/', HomeController.homePage);
   }
 
   public getRouter(): Router {
