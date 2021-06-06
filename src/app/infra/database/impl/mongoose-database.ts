@@ -5,12 +5,13 @@ import IDatabase from "../i-database";
 export default class MongooseDatabase implements IDatabase<Connection> {
 
   public async createConnection(): Promise<void> {
-    await connect(`mongodb://${configurations.dbHost}:${configurations.dbPort}/${configurations.dbName}`, {
+    await connect(MongooseDatabase.getDatabaseUrl(), {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       user: configurations.dbUsername,
       pass: configurations.dbPassword,
-      poolSize: configurations.dbPoolSize
+      poolSize: configurations.dbPoolSize,
+      useCreateIndex: true
     });
   }
 
@@ -20,6 +21,10 @@ export default class MongooseDatabase implements IDatabase<Connection> {
 
   public isConnected(): boolean {
     return this.getConnection().readyState === 1;
+  }
+
+  public static getDatabaseUrl(): string {
+    return `mongodb://${configurations.dbHost}:${configurations.dbPort}/${configurations.dbName}`;
   }
 
 }

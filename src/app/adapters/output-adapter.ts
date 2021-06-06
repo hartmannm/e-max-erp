@@ -1,6 +1,6 @@
-import { AppError } from "../../../domain/shared/error/app-error";
-import Result from "../../../domain/shared/use-cases/result";
-import JsonResponse from "../../entities/json-response";
+import { AppError } from "../../domain/shared/error/app-error";
+import Result from "../../domain/shared/use-cases/result";
+import JsonResponse from "./json-response";
 
 export default class OutputAdapter {
 
@@ -9,7 +9,6 @@ export default class OutputAdapter {
       timestamp: new Date().getTime()
     }
     if (result.hasError()) {
-      console.log(result.getError())
       response.error = result.getError();
     } else {
       response.data = result.getValue();
