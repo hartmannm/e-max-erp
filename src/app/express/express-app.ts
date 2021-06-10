@@ -10,6 +10,8 @@ import session = require("express-session");
 import HomeRouter from './routes/home-router';
 import AuthFilter from './middlewares/auth/auth-filter';
 import MongoStore from 'connect-mongo';
+import { PasswordRouter } from './routes/password-router';
+import EmailHandler from '../infra/email/email-handler';
 
 export default class ExpressApp {
 
@@ -18,8 +20,9 @@ export default class ExpressApp {
     this._configureViews(app);
     this._configureSession(app);
     this._configureMiddlewares(app);
-    this.configureRouter(app);
+    this._configureRouter(app);
     await this._connectToDatabase();
+    await this._connectToEmailServer();
     const port = configurations.port;
     console.log(`Server running on port ${port}`);
     app.listen(port);
@@ -62,11 +65,17 @@ export default class ExpressApp {
     console.log('Connected on database...');
   }
 
-  private configureRouter(app: express.Application): void {
+  private _configureRouter(app: express.Application): void {
     app.use('/login', new AuthRouter().getRouter());
+    app.use('/password', new PasswordRouter().getRouter());
     // A partir deste ponto todas as requisições devem ser acessadas com o usuário logado
     const authFilter = new AuthFilter();
     app.use('/', authFilter.authenticateRequest, new HomeRouter().getRouter());
+  }
+
+  private async _connectToEmailServer(): Promise<void> {
+    const emailHandler = new EmailHandler();
+    await emailHandler.connectToServer();
   }
 
 }
