@@ -7,6 +7,7 @@ export default interface IUser {
   lastName: string;
   email: string;
   password: string;
-  userLevel: UserLevel
+  userLevel: UserLevel;
+  hash: string;
 
 }

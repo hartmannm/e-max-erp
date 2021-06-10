@@ -7,7 +7,8 @@ const UserSchema: Schema = new Schema({
   lastName: { type: String },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  userLevel: { type: String, enum: UserLevel }
+  userLevel: { type: String, enum: UserLevel },
+  hash: { type: String, required: true }
 });
 
 mongoose.model<User>('User', UserSchema);
