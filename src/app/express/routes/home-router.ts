@@ -1,21 +1,10 @@
-import { Router } from "express";
 import HomeController from "../controllers/home-controller";
+import AbstractRouter from "./abstract-router";
 
-export default class HomeRouter {
+export default class HomeRouter extends AbstractRouter {
 
-  private router: Router;
-
-  constructor() {
-    this.router = Router();
-    this._configureRoutes();
-  }
-
-  private _configureRoutes(): void {
+  protected configureRoutes(): void {
     this.router.get('/', HomeController.homePage);
-  }
-
-  public getRouter(): Router {
-    return this.router;
   }
 
 }
