@@ -21,4 +21,8 @@ export default {
   dbName: process.env.DB_NAME.trim(),
   dbPoolSize: process.env.DB_POOLSIZE ? parseInt(process.env.DB_POOLSIZE, 10) : 10,
   sessionSecret: process.env.SESSION_SECRET.trim(),
+  emailHost: process.env.EMAIL_HOST.trim(),
+  emailPort: parseInt(process.env.EMAIL_PORT, 10),
+  emailUser: process.env.EMAIL_USER.trim(),
+  emailPassword: process.env.EMAIL_PASSWORD.trim(),
 }

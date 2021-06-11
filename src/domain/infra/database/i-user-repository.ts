@@ -4,4 +4,6 @@ export default interface IUserRepository {
 
   findByEmail(email: string): Promise<IUser>;
 
+  update(user: IUser): Promise<boolean>;
+
 }

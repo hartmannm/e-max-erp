@@ -20,6 +20,15 @@
   height: auto;
 }
 
+.password-link-container {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.password-link-container a {
+  text-decoration: none;
+}
+
 @media only screen and (max-width: 550px) {
   .form-container {
     width: 390px;
