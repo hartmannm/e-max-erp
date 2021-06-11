@@ -47,7 +47,7 @@ export default class PasswordRecoverEmailUseCase implements IUseCase<PasswordRec
     `
     <h1>Olá, ${user.name}!
     <br/>
-    <p>Você solicitou a redefinição da sua senha. Clique <a href="${input.emailDestinLink}/${user.hash}">aqui</a> e acesse a página de redefinição de senha.
+    <p>Você solicitou a redefinição da sua senha. Clique <a href="${input.emailDestinLink}?hash=${user.hash}">aqui</a> e acesse a página de redefinição de senha.
     `;
     await this.emailHandler.sendEmail(data);
   }

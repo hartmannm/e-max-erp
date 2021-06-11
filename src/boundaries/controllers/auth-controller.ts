@@ -21,15 +21,15 @@ export default class AuthController {
   public static async forgotPasswordEmail(request: IRequestData): Promise<Result<any, AppError>> {
     const input: PasswordRecoverInput = {
       email: request.body.email,
-      emailDestinLink: `http://localhost:${configurations.port}/password/password-change/`,
+      emailDestinLink: `http://localhost:${configurations.port}/password/password-change`,
       emailFrom: configurations.emailUser
     };
     const loginResponse = await new PasswordRecoverEmailUseCase(new UserRepository(), new EmailHandler()).execute(input);
     return loginResponse.result;
   }
 
-  public static async changePassword(request: IRequestData): Promise<Result<any, AppError>> {
-    const loginResponse = await new ChangePasswordUseCase(new UserRepository()).execute(request.body);
+  public static async changePassword(request: IRequestData): Promise<Result<string, AppError>> {
+    const loginResponse = await new ChangePasswordUseCase(new UserRepository(), new Crypto()).execute(request.body);
     return loginResponse.result;
   }
 

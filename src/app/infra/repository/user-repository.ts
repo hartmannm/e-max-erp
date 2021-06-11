@@ -11,4 +11,9 @@ export default class UserRepository implements IUserRepository {
     return (await User.findOne({ email }))?.toObject<User>();
   }
 
+  public async update(user: User): Promise<boolean> {
+    const User = mongoose.model('User', UserSchema);
+    return User.updateOne({ _id: { $eq: user._id } }, user).then(res => res.ok === 1);
+  }
+
 }

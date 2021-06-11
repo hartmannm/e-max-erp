@@ -17,7 +17,7 @@ export default class LoginController {
     const result = await ExpressAdapter.adapt(AuthController.login, req);
     if (result.hasError()) {
       const error = result.getError();
-      res.render('login/login-form', { authData: req.body, error: error });
+      res.render('login/login-form', { context: req.body, error: error });
     } else {
       await SessionHelper.saveUserSession(req, result.getValue());
       res.redirect('/')

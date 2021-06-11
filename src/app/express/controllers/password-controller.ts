@@ -33,7 +33,12 @@ export default class PasswordController {
 
   public static async passwordChange(req: Request, res: Response): Promise<void> {
     const result = await ExpressAdapter.adapt(AuthController.changePassword, req);
-    // TODO: Tratar retorno
+    if (result.hasError()) {
+      const error = result.getError();
+      res.render(`password/password-change-form`, { context: req.body, error: error });
+    } else {
+      res.redirect(`/login?email=${result.getValue()}`)
+    }
   }
 
 }

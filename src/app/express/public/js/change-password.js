@@ -1,7 +1,11 @@
 window.onload = () => {
-  document.querySelector('#hash').value = getUrlUserHash();
+  const userHash = getUrlUserHash();
+  if (userHash) {
+    document.querySelector('#hash').value = userHash;
+  }
 }
 
 const getUrlUserHash = () => {
-  return window.location.href.split('/').pop();
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('hash');
 }

@@ -3,6 +3,6 @@ import Result from "../../../../../shared/use-cases/result";
 
 export default class ChangePasswordOutput {
 
-  constructor(public result: Result<any, AppError>) { }
+  constructor(public result: Result<string, AppError>) { }
 
 }
