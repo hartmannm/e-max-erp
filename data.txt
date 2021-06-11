@@ -2,24 +2,29 @@
   "_id": "60bbc4d1d4e22f817c7d7511",
   "email": "usuario1@emax.com",
   "password": "$2b$10$S7Wxv1Cl4kNEBzu.aePHV.UWXzj7gLF.AVnKmTtcMVEi0IT6C3qea"
+  "hash": "dcas1dc651asdc1as65d.189as1dc6a5s4dc9as4.1cas4dc6as51dc65a1"
 },
 {
   "_id": "60bbc4d194e22f817c7db511",
   "email": "usuario2@emax.com",
   "password": "$2b$10$S7Wxv1Cl4kNEBzu.aePHV.UWXzj7gLF.AVnKmTtcMVEi0IT6C3qea"
+  "hash": "dcas1dc651asdc1as65d.189as1dc6a5s4dc9as4.1cas4dc6as51dc65a1"
 },
 {
   "_id": "60bbcsd194e22f817c7d7511",
   "email": "usuario3@emax.com",
   "password": "$2b$10$S7Wxv1Cl4kNEBzu.aePHV.UWXzj7gLF.AVnKmTtcMVEi0IT6C3qea"
+  "hash": "dcas1dc651asdc1as65d.189as1dc6a5s4dc9as4.1cas4dc6as51dc65a1"
 },
 {
   "_id": "60bbc4d194e22y817c7d7511",
   "email": "usuario4@emax.com",
   "password": "$2b$10$S7Wxv1Cl4kNEBzu.aePHV.UWXzj7gLF.AVnKmTtcMVEi0IT6C3qea"
+  "hash": "dcas1dc651asdc1as65d.189as1dc6a5s4dc9as4.1cas4dc6as51dc65a1"
 },
 {
   "_id": "60bbc4d194e22fm17c7d7511",
   "email": "usuario5@emax.com",
   "password": "$2b$10$S7Wxv1Cl4kNEBzu.aePHV.UWXzj7gLF.AVnKmTtcMVEi0IT6C3qea"
+  "hash": "dcas1dc651asdc1as65d.189as1dc6a5s4dc9as4.1cas4dc6as51dc65a1"
 }
