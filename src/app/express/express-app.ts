@@ -12,6 +12,7 @@ import AuthFilter from './middlewares/auth/auth-filter';
 import MongoStore from 'connect-mongo';
 import { PasswordRouter } from './routes/password-router';
 import EmailHandler from '../infra/email/email-handler';
+import { UserRouter } from './routes/user-router';
 
 export default class ExpressApp {
 
@@ -55,6 +56,7 @@ export default class ExpressApp {
     app.engine('hbs', exphbs({
       defaultLayout: 'main',
       extname: '.hbs',
+      partialsDir: path.join(__dirname, 'views/partials')
     }));
     app.use(express.static(path.join(__dirname, 'public')));
   }
@@ -71,6 +73,7 @@ export default class ExpressApp {
     // A partir deste ponto todas as requisições devem ser acessadas com o usuário logado
     const authFilter = new AuthFilter();
     app.use('/', authFilter.authenticateRequest, new HomeRouter().getRouter());
+    app.use('/user', authFilter.authenticateRequest, new UserRouter().getRouter());
   }
 
   private async _connectToEmailServer(): Promise<void> {
