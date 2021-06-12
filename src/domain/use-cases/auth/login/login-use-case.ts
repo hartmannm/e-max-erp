@@ -49,4 +49,3 @@ export default class LoginUseCase implements IUseCase<LoginInput, LoginOutput> {
   }
 
 }
-

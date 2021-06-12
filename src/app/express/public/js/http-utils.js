@@ -1,14 +1,27 @@
-function parseResponse(response) {
+const parseResponse = (response) => {
   if (response.ok) {
-    return Promise.resolve(response.json());
+    if(response.headers.get('Content-Length') > 0) {
+      return Promise.resolve(response.json());
+    }
+    return Promise.resolve();
   }
   return response.json().then(res => Promise.reject(res));
 }
 
-function postRequest(url, body) {
-  return fetch(url, {
+const postRequest = (url, body) => {
+  const reqData = {
     method: 'POST',
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
+    headers: { 'Content-Type': 'application/json' }
+  };
+  if (body) {
+    reqData.body = JSON.stringify(body);
+  };
+  return fetch(url, reqData).then(parseResponse);
+}
+
+const getRequest = (url) => {
+  return fetch(url, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
   }).then(parseResponse);
 }
