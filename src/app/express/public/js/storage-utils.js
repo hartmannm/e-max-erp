@@ -5,6 +5,6 @@ const saveData = (key, value) => {
   window.localStorage.setItem(key, value);
 }
 
-const getData = (key) => {
-  return JSON.parse(window.localStorage.getItem(key));
-}
+const getData = (key) => JSON.parse(window.localStorage.getItem(key));
+
+const clearStorage = () => window.localStorage.clear();
