@@ -33,7 +33,7 @@ export default class ExpressApp {
     app.use(session({
       secret: configurations.sessionSecret,
       name: 'uniqueSessionID',
-      saveUninitialized: true,
+      saveUninitialized: false,
       store: MongoStore.create({mongoUrl: MongooseDatabase.getDatabaseUrl()}),
       resave: false,
       cookie: { maxAge: 3600000, secure: false, httpOnly: true }
@@ -68,7 +68,7 @@ export default class ExpressApp {
   }
 
   private _configureRouter(app: express.Application): void {
-    app.use('/login', new AuthRouter().getRouter());
+    app.use('/', new AuthRouter().getRouter());
     app.use('/password', new PasswordRouter().getRouter());
     // A partir deste ponto todas as requisições devem ser acessadas com o usuário logado
     const authFilter = new AuthFilter();

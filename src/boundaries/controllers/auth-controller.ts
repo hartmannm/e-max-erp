@@ -10,6 +10,7 @@ import EmailHandler from "../../app/infra/email/email-handler";
 import PasswordRecoverInput from "../../domain/use-cases/auth/password/recover-email/dtos/password-recover-email-input";
 import configurations from "../../app/infra/config/configurations";
 import ChangePasswordUseCase from "../../domain/use-cases/auth/password/change-password/change-password-use-case";
+import LogoutUseCase from "../../domain/use-cases/auth/logout/logout-use-case";
 
 export default class AuthController {
 
@@ -30,6 +31,11 @@ export default class AuthController {
 
   public static async changePassword(request: IRequestData): Promise<Result<string, AppError>> {
     const loginResponse = await new ChangePasswordUseCase(new UserRepository(), new Crypto()).execute(request.body);
+    return loginResponse.result;
+  }
+
+  public static async logout(request: IRequestData): Promise<Result<void, AppError>> {
+    const loginResponse = await new LogoutUseCase(new UserRepository()).execute(request.body);
     return loginResponse.result;
   }
 
