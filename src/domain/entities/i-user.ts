@@ -9,5 +9,6 @@ export default interface IUser {
   password: string;
   userLevel: UserLevel;
   hash: string;
+  lastAccessDuration: number;
 
 }
