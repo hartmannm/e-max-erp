@@ -1,0 +1,31 @@
+.margim-bottom-15 {
+  margin-bottom: 15px;
+}
+
+.margim-top-15 {
+  margin-bottom: 15px;
+}
+
+.hoverable {}
+
+.hoverable:hover {
+  cursor: pointer;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.grid-actions {
+  width: 15px;
+}
+
+.audit-dates {
+  margin-bottom: 10px;
+  font-weight: 500;
+}
