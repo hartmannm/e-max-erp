@@ -1,0 +1,19 @@
+.no-data-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon {
+  font-size: 8.5em;
+  color: #adb5bd;
+  margin-bottom: 15px;
+}
+
+.message {
+  font-size: 2.3em;
+  color: #adb5bd;
+  margin-bottom: 15px;
+}
+
+

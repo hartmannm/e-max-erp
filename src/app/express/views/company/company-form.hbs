@@ -1,0 +1,46 @@
+{{> navbar}}
+<div class="container">
+  <div class="card form-container">
+    {{#if error}}
+    <div class="alert alert-danger d-flex justify-content-center" role="alert">
+      {{error.message}}
+    </div>
+    {{/if}}
+    <div class="card-body">
+      <h2>Companhia - {{#if isReadAccess}}Consultar{{else if isUpdateAccess}}Alterar{{else}}Incluir{{/if}}</h2>
+      <div class="audit-dates">
+        {{#if createdAt}}
+        <div>Criado em: {{createdAt}}</div>
+        {{/if}}
+        {{#if isUpdateAccess}}
+        <div>Atualizado em: {{updatedAt}}</div>
+        {{/if}}
+      </div>
+      <form id="company-form" action="/company" method="POST">
+        <input id="id" name="_id" type="hidden" value="{{context._id}}">
+        <div class="mb-3">
+          <label for="name" class="form-label">Nome Fantasia</label>
+          <input name="name" id="name" class="form-control" value="{{context.name}}" {{#if
+            isReadAccess}}disabled{{/if}} />
+        </div>
+        <div class="mb-3">
+          <label for="corporateName" class="form-label">Razão Social</label>
+          <input name="corporateName" id="corporateName" class="form-control" value="{{context.corporateName}}" {{#if
+            isReadAccess}}disabled{{/if}} />
+        </div>
+        <div class="mb-3">
+          <label for="cnpj" class="form-label">CNPJ</label>
+          <input name="cnpj" id="cnpj" class="form-control" value="{{context.cnpj}}" {{#if
+            isReadAccess}}disabled{{/if}} />
+        </div>
+        <div class="d-flex flex-row-reverse">
+          {{#if isReadAccess}}
+          <a class="btn btn-primary" href="/company" role="button">Companhias</a>
+          {{else}}
+          <button class="btn btn-primary">{{#if isUpdateAccess}}Alterar{{else}}Cadastrar{{/if}}</button>
+          {{/if}}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
