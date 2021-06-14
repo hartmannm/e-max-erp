@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="/css/no-data.css">
+<div class="no-data-container">
+  <div class="icon noselect">
+    <i class="fas fa-sad-tear"></i>
+  </div>
+  <div class="message noselect">
+    Nenhum dado encontrado
+  </div>
+  {{#if link}}
+  <div>
+    <a class="btn btn-primary" href="{{link}}" role="button">Cadastrar</a>
+  </div>
+  {{/if}}
+</div>
