@@ -1,0 +1,41 @@
+{{> navbar}}
+<div class="container">
+  {{#if users}}
+  <div class="d-flex flex-row-reverse margim-bottom-15">
+    <a class="btn btn-primary" href="/user/create" role="button">Cadastrar</a>
+  </div>
+  <table class="table table-hover" id="user-table">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Email</th>
+        <th scope="col">Nível</th>
+        <th scope="col">Companhia</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each users}}
+      <tr class="hoverable column-row">
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{role.name}}</td>
+        <td>{{company.name}}</td>
+        <td class="grid-actions">
+          <div class="dropdown">
+            <button class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="/user/{{_id}}/read">Consultar</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{else}}
+  {{> no-data link="/user/create"}}
+  {{/if}}
+</div>
