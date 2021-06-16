@@ -44,4 +44,11 @@ export default class CompanyRepository implements ICompanyRepository {
     return Company.updateOne({ _id: { $eq: company._id } }, company).then(res => res.ok === 1);
   }
 
+  public async findAll(): Promise<Company[]> {
+    const Company = mongoose.model('Company', CompanySchema);
+    return Company.find().lean().exec()
+      .then(users => users as unknown as Company[])
+      .catch(() => null);
+  }
+
 }

@@ -6,4 +6,10 @@ export default interface IUserRepository {
 
   update(user: IUser): Promise<boolean>;
 
+  findByName(name: string): Promise<IUser>;
+
+  createUser(iser: IUser): Promise<void>;
+
+  findAll(): Promise<IUser[]>
+
 }
