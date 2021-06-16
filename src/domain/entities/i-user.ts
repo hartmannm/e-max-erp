@@ -1,14 +1,15 @@
-import { UserLevel } from "../shared/enums/user/user-level";
-
 export default interface IUser {
 
-  _id: string;
-  name: string;
-  lastName: string;
+  _id?: string;
+  cpf: string;
   email: string;
-  password: string;
-  userLevel: UserLevel;
+  password?: string;
+  name: string;
+  phone: string;
+  resetPasswordSendAt?: Date;
   hash: string;
-  lastAccessDuration: number;
+  lastAccessDuration?: number;
+  createdAt?: Date;
+  updatedAt?: Date;
 
 }

@@ -1,0 +1,67 @@
+{{> navbar}}
+<div class="container">
+  <div class="card form-container">
+    {{!-- Mensagem de erro --}}
+    {{#if error}}
+    <div class="alert alert-danger d-flex justify-content-center" role="alert">
+      {{error.message}}
+    </div>
+    {{/if}}
+    <div class="card-body">
+      {{!-- Formulário --}}
+      <h2>Usuário - {{#if isReadAccess}}Consultar{{else}}Incluir{{/if}}</h2>
+      <div class="audit-dates">
+        {{#if createdAt}}
+        <div>Criado em: {{createdAt}}</div>
+        {{/if}}
+      </div>
+      <form id="company-form" action="/user" method="POST">
+        <div class="mb-3">
+          <label for="name" class="form-label">Nome</label>
+          <input name="name" id="name" {{#if isReadAccess}}disabled{{/if}} class="form-control"
+            value="{{context.user.name}}" required />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" name="email" id="email" {{#if isReadAccess}}disabled{{/if}} class="form-control"
+            value="{{context.user.email}}" required />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Nível de usuário</label>
+          <select class="form-select" {{#if isReadAccess}}disabled{{/if}} aria-label="Selecionar nível de usuário"
+            name="roleId" id="role" id="role">
+            {{#each context.roles}}
+            <option value="{{value}}" {{#if selected}}selected{{/if}}>{{exibitionValue}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="cpf" class="form-label">CPF</label>
+          <input name="cpf" id="cpf" {{#if isReadAccess}}disabled{{/if}} class="form-control"
+            value="{{context.user.cpf}}" required />
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Telefone</label>
+          <input type="phone" name="phone" id="phone" {{#if isReadAccess}}disabled{{/if}} class="form-control"
+            value="{{context.user.phone}}" required />
+        </div>
+        <div class="mb-3">
+          <label for="companyId" class="form-label">Companhia</label>
+          <select class="form-select" {{#if isReadAccess}}disabled{{/if}} aria-label="Selecionar nível de usuário"
+            name="companyId" id="companyId">
+            {{#each context.companies}}
+            <option value="{{value}}" {{#if selected}}selected{{/if}}>{{exibitionValue}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <div class="d-flex flex-row-reverse">
+          {{#if isReadAccess}}
+          <a class="btn btn-primary" href="/user" role="button">Usuários</a>
+          {{else}}
+          <button class="btn btn-primary">Cadastrar</button>
+          {{/if}}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

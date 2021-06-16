@@ -11,6 +11,7 @@ import PasswordRecoverInput from "../../domain/use-cases/auth/password/recover-e
 import configurations from "../../app/infra/config/configurations";
 import ChangePasswordUseCase from "../../domain/use-cases/auth/password/change-password/change-password-use-case";
 import LogoutUseCase from "../../domain/use-cases/auth/logout/logout-use-case";
+import LinksFactory from "../shared/auth/links-factory";
 
 export default class AuthController {
 
@@ -22,7 +23,7 @@ export default class AuthController {
   public static async forgotPasswordEmail(request: IRequestData): Promise<Result<any, AppError>> {
     const input: PasswordRecoverInput = {
       email: request.body.email,
-      emailDestinLink: `http://localhost:${configurations.port}/password/password-change`,
+      emailDestinLink: LinksFactory.createChangePasswordLink(),
       emailFrom: configurations.emailUser
     };
     const loginResponse = await new PasswordRecoverEmailUseCase(new UserRepository(), new EmailHandler()).execute(input);
