@@ -1,0 +1,28 @@
+.menu-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.menu-item-link {
+  text-decoration: none;
+  color: gray;
+  text-align: center;
+}
+
+.menu-item-link:hover {
+  color: gray;
+}
+
+.menu-item-container {
+  padding: 7px;
+  margin: 5px;
+}
+
+.menu-item-icon {
+  font-size: 36px;
+}
+
+.menu-item-label {
+  font-size: 20px;
+}
