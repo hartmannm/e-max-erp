@@ -9,3 +9,23 @@
 nav {
   margin-bottom: 15px;
 }
+
+.home-link {
+  color: #fff;
+  font-size: 1.2em;
+}
+
+.home-link a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.home-link i {
+  margin-right: 5px;
+}
+
+.title {
+  color: #fff;
+  font-size: 1.5em;
+  font-family: 'Lato', sans-serif;
+}
