@@ -8,7 +8,7 @@ export default interface IUserRepository {
 
   findByName(name: string): Promise<IUser>;
 
-  createUser(iser: IUser): Promise<void>;
+  createUser(iser: IUser): Promise<IUser>;
 
   findAll(): Promise<IUser[]>
 

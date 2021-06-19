@@ -13,14 +13,22 @@ export default class CompanyUserRepository implements ICompanyUserRepository {
 
   public async findAll(): Promise<CompanyUser[]> {
     const CompanyUser = mongoose.model('CompanyUser', CompanyUserSchema);
-    return CompanyUser.find().lean().exec()
+    return CompanyUser.find()
+      .populate('company')
+      .populate('role')
+      .populate('user')
+      .lean().exec()
       .then(users => users as unknown as CompanyUser[])
       .catch(() => null);
   }
 
   public async findById(id: string): Promise<CompanyUser> {
     const CompanyUser = mongoose.model('CompanyUser', CompanyUserSchema);
-    return CompanyUser.findById(id).lean().exec()
+    return CompanyUser.findById(id)
+      .populate('company')
+      .populate('role')
+      .populate('user')
+      .lean().exec()
       .then(user => user)
       .catch(() => null);
   }

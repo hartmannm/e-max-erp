@@ -25,9 +25,9 @@ export default class UserRepository implements IUserRepository {
       .catch(() => null);
   }
 
-  public async createUser(user: User): Promise<void> {
+  public async createUser(user: User): Promise<IUser> {
     const User = mongoose.model('User', UserSchema);
-    User.create(user);
+    return User.create(user).then(user => user as unknown as IUser);
   }
 
   public async findAll(): Promise<User[]> {

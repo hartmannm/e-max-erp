@@ -1,6 +1,6 @@
 export default interface IRole {
 
-  _id: string;
+  _id?: string;
   isManager: boolean;
   name: string;
   createdAt: Date;

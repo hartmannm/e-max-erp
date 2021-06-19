@@ -4,7 +4,7 @@ import IUser from "./i-user";
 
 export default interface ICompanyUser {
 
-  _id?: number;
+  _id?: string;
   company: ICompany;
   role: IRole;
   user: IUser;

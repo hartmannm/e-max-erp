@@ -30,10 +30,11 @@ export default class CreateUserUseCase implements IUseCase<CreateUserInput, Crea
     try {
       await this._validateName(input);
       await this._validateEmail(input);
+      // Recupera ou cria as entidades relacionadas ao usuário da companhia
       const role = await this.roleRepository.findById(input.roleId);
-      const user = await this._buildUser(input)
-      await this.userRepository.createUser(user);
+      const user = await this.userRepository.createUser(await this._buildUser(input));
       const company = await this.companyRepository.findById(input.companyId);
+      // Cria o usuário da companhia e salva no BD
       const companyUser: ICompanyUser = { user, company, role }
       this.companyUserRepository.createCompanyUser(companyUser);
       this._sendPasswordDefineEmail(input, user);
@@ -80,7 +81,7 @@ export default class CreateUserUseCase implements IUseCase<CreateUserInput, Crea
     data.subject = 'e-Max ERP - Redefinir senha'
     data.content =
     `
-    <h1>Olá, ${user.name}!
+    <h1>Olá, ${user.name}!</h1>
     <br/>
     <p>Você foi cadastrado no nosso sistema, antes de acessar é necessário redefinir sua senha.</p>
     <p>Clique <a href="${input.emailLink}?hash=${user.hash}">aqui</a> e acesse a página de redefinição de senha.</p>

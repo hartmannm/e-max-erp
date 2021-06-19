@@ -1,14 +1,11 @@
 import mongoose, { Schema } from "mongoose";
 import CompanyUser from "../company-user";
-import CompanySchema from "./company-schema";
-import RoleSchema from "./role-schema";
-import UserSchema from "./user-schema";
 
 const CompanyUserSchema: Schema = new Schema(
   {
-    company: CompanySchema,
-    role: RoleSchema,
-    user: UserSchema
+    company: { type: mongoose.Schema.Types.ObjectId, ref: 'Company' },
+    role: { type: mongoose.Schema.Types.ObjectId, ref: 'Role' },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
   },
   {
     timestamps: {
